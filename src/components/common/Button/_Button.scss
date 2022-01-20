@@ -1,0 +1,17 @@
+.button {
+  padding: 0.5rem;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.error {
+  background-color: $errorColor;
+}
+.warning {
+  background-color: $warningColor;
+}
+.success {
+  background-color: $successColor;
+}

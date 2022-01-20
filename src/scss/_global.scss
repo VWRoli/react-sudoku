@@ -8,4 +8,11 @@
 }
 body {
   background: $mainBgColor;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
+.App {
+  width: fit-content;
+  text-align: center;
 }

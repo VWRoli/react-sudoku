@@ -1,0 +1,15 @@
+@mixin btn-clr($clr) {
+  background-color: $clr;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    background-color: lighten($clr, 5);
+    transform: scale(1.05);
+  }
+}
+
+@mixin flex-center($dir) {
+  display: flex;
+  flex-direction: $dir;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,15 @@
+nav {
+  padding: 1rem;
+  ul {
+    list-style-type: none;
+    @include flex-center(row);
+    li {
+      margin: 0 1rem;
+    }
+  }
+}
+.active-link {
+  text-decoration: underline;
+  color: $errorColor;
+  font-weight: 300;
+}

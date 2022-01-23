@@ -12,6 +12,14 @@ body {
   display: grid;
   place-items: center;
 }
+a {
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+    color: $errorColor;
+    font-weight: 300;
+  }
+}
 .App {
   width: fit-content;
   text-align: center;

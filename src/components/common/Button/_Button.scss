@@ -1,17 +1,20 @@
 .button {
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   border-radius: 10px;
   border: none;
   outline: none;
   cursor: pointer;
   font-size: 1rem;
+  color: $white;
+  font-weight: 300;
+  width: fit-content;
 }
 .error {
-  background-color: $errorColor;
+  @include btn-clr($errorColor);
 }
 .warning {
-  background-color: $warningColor;
+  @include btn-clr($warningColor);
 }
 .success {
-  background-color: $successColor;
+  @include btn-clr($successColor);
 }

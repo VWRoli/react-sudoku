@@ -1,0 +1,15 @@
+form {
+  .form-group {
+    margin: 0.5rem;
+    input,
+    select {
+      padding: 0.45rem;
+      border-radius: 10px;
+      border: 1px solid $grey;
+      background-color: $white;
+    }
+  }
+  .button {
+    margin-top: 1rem;
+  }
+}

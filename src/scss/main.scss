@@ -1,6 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;500&display=swap');
 @import './variables';
+@import './utils';
 @import './global';
 @import '../components/GridWrapper/GridWrapper';
 @import '../components/common/Button/Button';
+@import '../components/Navbar/Navbar';
 @import '../components/common/PageWrapper/PageWrapper';
+@import '../components/Home/Home';
+@import '../components/Subscription/Subscription';
+@import '../components/Sudoku/Sudoku';

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { navbarData } from './navbarData';
 
 const Navbar: React.FC = (): JSX.Element => {
@@ -9,7 +9,12 @@ const Navbar: React.FC = (): JSX.Element => {
           const { id, url, text } = link;
           return (
             <li key={id}>
-              <Link to={url}>{text}</Link>
+              <NavLink
+                to={url}
+                className={({ isActive }) => (isActive ? 'active-link' : '')}
+              >
+                {text}
+              </NavLink>
             </li>
           );
         })}

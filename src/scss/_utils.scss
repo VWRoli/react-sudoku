@@ -13,3 +13,11 @@
   align-items: center;
   justify-content: center;
 }
+
+@mixin msg-clr($clr) {
+  background-color: lighten($clr, 10);
+  p {
+    font-weight: 300;
+    color: darken($clr, 25);
+  }
+}

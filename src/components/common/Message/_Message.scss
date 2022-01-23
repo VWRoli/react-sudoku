@@ -1,0 +1,14 @@
+.message-box {
+  margin: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+}
+.errorMsg {
+  @include msg-clr($errorColor);
+}
+.successMsg {
+  @include msg-clr($successColor);
+}
+.warningMsg {
+  @include msg-clr($warningColor);
+}

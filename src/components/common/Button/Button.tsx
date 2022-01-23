@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 /* eslint-disable no-unused-vars */
-export enum buttonType {
+export enum roleType {
   WARNING = 'WARNING',
   ERROR = 'ERROR',
   SUCCESS = 'SUCCESS',
@@ -10,14 +10,14 @@ export enum buttonType {
 
 type Props = {
   label: string;
-  btnRole: buttonType;
+  btnRole: roleType;
   route?: string;
 };
 
 const Button: React.FC<Props> = ({ label, btnRole, route }): JSX.Element => {
-  const classes = `button ${btnRole === buttonType.SUCCESS && 'success'} ${
-    btnRole === buttonType.ERROR && 'error'
-  } ${btnRole === buttonType.WARNING && 'warning'}`;
+  const classes = `button ${btnRole === roleType.SUCCESS && 'success'} ${
+    btnRole === roleType.ERROR && 'error'
+  } ${btnRole === roleType.WARNING && 'warning'}`;
 
   return (
     <>

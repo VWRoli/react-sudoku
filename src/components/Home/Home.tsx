@@ -1,6 +1,6 @@
 //Components
 import PageWrapper from '../common/PageWrapper/PageWrapper';
-import Button, { buttonType } from '../common/Button/Button';
+import Button, { roleType } from '../common/Button/Button';
 
 const Home: React.FC = (): JSX.Element => {
   return (
@@ -22,7 +22,7 @@ const Home: React.FC = (): JSX.Element => {
         <div className="right">
           <Button
             label="Solve Sudoku"
-            btnRole={buttonType.WARNING}
+            btnRole={roleType.WARNING}
             route="/sudoku"
           />
         </div>

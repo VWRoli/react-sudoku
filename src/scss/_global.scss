@@ -20,6 +20,11 @@ a {
     font-weight: 300;
   }
 }
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
 .App {
   width: fit-content;
   text-align: center;

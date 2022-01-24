@@ -1,0 +1,15 @@
+.control-btn {
+  height: 35px;
+  width: 35px;
+  background-color: $infoColor;
+  color: $white;
+  border-radius: $primary-radius;
+  @include flex-center(row);
+  font-size: 1.25rem;
+  font-weight: 300;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}

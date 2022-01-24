@@ -37,3 +37,10 @@
     background-color: $light-grey;
   }
 }
+
+.control-btn-container {
+  @include flex-center(row);
+  & > * {
+    margin: 1rem 0.25rem;
+  }
+}

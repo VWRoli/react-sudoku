@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 type Props = {
   number: number;
   id: string;
@@ -9,17 +11,20 @@ const GridItem: React.FC<Props> = ({
   id,
   setUserSelected,
 }): JSX.Element => {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUserSelected(e.target.value);
+  const [selected, setSelected] = useState(false);
+
+  const handleClick = () => {
+    setUserSelected(id);
+    setSelected(true);
   };
+
   return (
-    <div className="grid-item" id={id}>
-      <input
-        type="number"
-        maxLength={1}
-        value={number === 0 ? '' : number}
-        onChange={handleChange}
-      />
+    <div
+      className={selected ? 'grid-item selected' : 'grid-item'}
+      id={id}
+      onClick={handleClick}
+    >
+      {!number || number}
     </div>
   );
 };

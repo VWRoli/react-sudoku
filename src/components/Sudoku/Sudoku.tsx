@@ -159,8 +159,8 @@ const Sudoku: React.FC = (): JSX.Element => {
                 return (
                   <GridItem
                     key={i}
+                    id={`${i}`}
                     number={item}
-                    id={`${rowIndex}${i}`}
                     setUserSelected={setUserSelected}
                   />
                 );

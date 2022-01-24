@@ -55,7 +55,6 @@ const Sudoku: React.FC = (): JSX.Element => {
             addUserInput={addUserInput}
           />
         ))}
-        <button onClick={() => addUserInput(0, 9)}>type</button>
       </div>
       <div className="btn-container">
         <Button

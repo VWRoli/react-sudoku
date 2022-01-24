@@ -3,24 +3,23 @@ import { useState } from 'react';
 type Props = {
   number: number;
   id: string;
-  setUserSelected: React.Dispatch<React.SetStateAction<string>>;
+  selected: string;
+  setSelected: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const GridItem: React.FC<Props> = ({
   number,
   id,
-  setUserSelected,
+  selected,
+  setSelected,
 }): JSX.Element => {
-  const [selected, setSelected] = useState(false);
-
   const handleClick = () => {
-    setUserSelected(id);
-    setSelected(true);
+    setSelected(id);
   };
 
   return (
     <div
-      className={selected ? 'grid-item selected' : 'grid-item'}
+      className={`${selected === id ? 'grid-item selected' : 'grid-item'}`}
       id={id}
       onClick={handleClick}
     >

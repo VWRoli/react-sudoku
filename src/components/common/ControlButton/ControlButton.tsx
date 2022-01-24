@@ -1,19 +1,14 @@
 type Props = {
   value: number;
-  setUserValue: React.Dispatch<React.SetStateAction<null | number>>;
   addUserInput: (selectedIndex: number, value: number) => void;
-  userSelected: string;
+  selected: string;
 };
 
-const ControlButton: React.FC<Props> = ({
-  value,
-  setUserValue,
-  addUserInput,
-  userSelected,
-}) => {
+const ControlButton: React.FC<Props> = ({ value, selected, addUserInput }) => {
   const handleClick = () => {
-    setUserValue(value);
-    addUserInput(+userSelected, value);
+    //setUserValue(value);
+    console.log(value);
+    addUserInput(+selected, value);
   };
 
   return (

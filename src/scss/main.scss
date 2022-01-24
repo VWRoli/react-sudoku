@@ -2,7 +2,6 @@
 @import './variables';
 @import './utils';
 @import './global';
-@import '../components/GridWrapper/GridWrapper';
 @import '../components/common/Button/Button';
 @import '../components/Navbar/Navbar';
 @import '../components/common/PageWrapper/PageWrapper';
@@ -10,3 +9,4 @@
 @import '../components/Subscription/Subscription';
 @import '../components/Sudoku/Sudoku';
 @import '../components/common/Message/Message';
+@import '../components/GridItem/GridItem';

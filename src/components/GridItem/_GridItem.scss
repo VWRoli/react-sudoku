@@ -1,0 +1,9 @@
+.grid-item {
+  height: 35px;
+  width: 35px;
+  border: 1px solid $mainTextColor;
+  border-radius: $primary-radius;
+  @include flex-center(row);
+  font-size: 1.25rem;
+  font-weight: 300;
+}

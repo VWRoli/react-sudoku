@@ -4,7 +4,8 @@ form {
     input,
     select {
       padding: 0.45rem;
-      border-radius: 10px;
+      border-radius: $primary-radius;
+
       border: 1px solid $grey;
       background-color: $white;
     }

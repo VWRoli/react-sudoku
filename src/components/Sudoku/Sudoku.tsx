@@ -9,6 +9,7 @@ import GridItem from '../GridItem/GridItem';
 const Sudoku: React.FC = (): JSX.Element => {
   const [selected, setSelected] = useState('');
   const [isSolvable, setIsSolvable] = useState(true);
+  const [userInput, setUserInput] = useState();
 
   const emptyBoard: number[] = Array(81).fill(0);
 
@@ -35,7 +36,7 @@ const Sudoku: React.FC = (): JSX.Element => {
     for (let i = 0; i < board.length; i = i + 9) {
       twoDimensionalBoard.push(board.slice(i, i + 9));
     }
-
+    console.log(board);
     function solve(board: number[][]) {
       const emptySpot = nextEmptySpot(board);
       const row = emptySpot[0];
@@ -161,9 +162,9 @@ const Sudoku: React.FC = (): JSX.Element => {
       )}
 
       <div className="control-btn-container">
-        {Array.from(Array(9).keys()).map((number) => (
+        {Array.from(Array(10).keys()).map((number) => (
           <ControlButton
-            value={number + 1}
+            value={number}
             key={number}
             selected={selected}
             addUserInput={addUserInput}

@@ -10,8 +10,11 @@ const ControlButton: React.FC<Props> = ({ value, selected, addUserInput }) => {
   };
 
   return (
-    <button className="control-btn" onClick={handleClick}>
-      {value}
+    <button
+      className={value !== 0 ? 'control-btn' : 'control-btn del-btn'}
+      onClick={handleClick}
+    >
+      {value !== 0 ? value : 'DEL'}
     </button>
   );
 };

@@ -1,5 +1,6 @@
 type Props = {
   value: number;
+  // eslint-disable-next-line no-unused-vars
   addUserInput: (selected: number, value: number) => void;
   selected: string;
 };

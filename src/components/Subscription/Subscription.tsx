@@ -3,6 +3,7 @@ import { useState } from 'react';
 import PageWrapper from '../common/PageWrapper/PageWrapper';
 import Button, { roleType } from '../common/Button/Button';
 import Message from '../common/Message/Message';
+import FormGroup from './FormGroup';
 
 type DataType = {
   fullName: string;
@@ -16,11 +17,12 @@ const Subscription: React.FC = (): JSX.Element => {
     email: '',
     difficulty: 'easy',
   });
-
+  const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState<null | boolean>(null);
 
   const subscribe = async (formData: DataType) => {
     try {
+      setIsLoading(true);
       setIsSubmitted(null);
       const res = await fetch('http://jsonplaceholder.typicode.com/posts', {
         method: 'POST',
@@ -34,7 +36,7 @@ const Subscription: React.FC = (): JSX.Element => {
       if (!res.ok) throw new Error('Something went wrong...');
 
       setIsSubmitted(true);
-
+      setIsLoading(false);
       return res;
     } catch (err) {
       setIsSubmitted(false);
@@ -56,28 +58,22 @@ const Subscription: React.FC = (): JSX.Element => {
   return (
     <PageWrapper>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="fullName"></label>
-          <input
-            type="text"
-            name="fullName"
-            id="fullName"
-            value={formData.fullName}
-            placeholder="Enter your name..."
-            onChange={handleChange}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="email"></label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            value={formData.email}
-            placeholder="Enter your email..."
-            onChange={handleChange}
-          />
-        </div>
+        <FormGroup
+          label="fullName"
+          type="text"
+          value={formData.fullName}
+          handleChange={handleChange}
+          disabled={isLoading}
+          placeholder="Enter your name..."
+        />
+        <FormGroup
+          label="email"
+          type="email"
+          value={formData.email}
+          handleChange={handleChange}
+          disabled={isLoading}
+          placeholder="Enter your email..."
+        />
         <div className="form-group">
           <label htmlFor="difficulty"></label>
           <select
@@ -91,6 +87,7 @@ const Subscription: React.FC = (): JSX.Element => {
             <option value="hard">Hard</option>
           </select>
         </div>
+        {isLoading && <Message msgRole={roleType.INFO} msg="Loading..." />}
         {isSubmitted === null ? null : (
           <Message
             msgRole={isSubmitted ? roleType.SUCCESS : roleType.ERROR}
@@ -101,7 +98,11 @@ const Subscription: React.FC = (): JSX.Element => {
             }
           />
         )}
-        <Button label="Submit" btnRole={roleType.SUCCESS} />
+        <Button
+          label="Submit"
+          btnRole={roleType.SUCCESS}
+          disabled={isLoading}
+        />
       </form>
     </PageWrapper>
   );

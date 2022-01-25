@@ -25,6 +25,7 @@ const Sudoku: React.FC = (): JSX.Element => {
   const [board, setBoard] = useState<number[]>(localBoard.board || emptyBoard);
 
   const handleReset = () => {
+    setSelected('');
     setBoard(emptyBoard);
     setIsSolvable(true);
     setComputerOutput(null);
@@ -44,7 +45,6 @@ const Sudoku: React.FC = (): JSX.Element => {
     }
 
     //To color the computer generated cells
-    console.log(board.map((cell) => (cell !== 0 ? false : true)));
     setComputerOutput(board.map((cell) => (cell !== 0 ? false : true)));
 
     function solve(board: number[][]) {
@@ -155,7 +155,6 @@ const Sudoku: React.FC = (): JSX.Element => {
     <PageWrapper>
       <div className="grid-wrapper">
         {board?.map((item: number, i: number) => {
-          //computerOutput[i] === true
           return (
             <GridItem
               key={i}

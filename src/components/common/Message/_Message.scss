@@ -12,3 +12,6 @@
 .warningMsg {
   @include msg-clr($warningColor);
 }
+.infoMsg {
+  @include msg-clr($infoColor);
+}

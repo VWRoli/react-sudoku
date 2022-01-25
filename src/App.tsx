@@ -1,12 +1,13 @@
 import { Routes, Route } from 'react-router-dom';
 //Components
 import Navbar from './components/Navbar/Navbar';
+import Sudoku from './components/Sudoku/Sudoku';
+import Subscription from './components/Subscription/Subscription';
+import NotFound from './components/NotFound/NotFound';
 //Pages
 import Home from './components/Home/Home';
 //CSS
 import './css/main.min.css';
-import Sudoku from './components/Sudoku/Sudoku';
-import Subscription from './components/Subscription/Subscription';
 
 function App(): JSX.Element {
   return (
@@ -17,6 +18,7 @@ function App(): JSX.Element {
         <Route path="/" element={<Home />} />
         <Route path="/sudoku" element={<Sudoku />} />
         <Route path="/subscription" element={<Subscription />} />
+        <Route element={<NotFound />} path="*" />
       </Routes>
     </div>
   );

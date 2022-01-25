@@ -10,7 +10,7 @@ const Message: React.FC<Props> = ({ msg, msgRole }): JSX.Element => {
     msgRole === roleType.SUCCESS && 'successMsg'
   } ${msgRole === roleType.ERROR && 'errorMsg'} ${
     msgRole === roleType.WARNING && 'warningMsg'
-  }`;
+  } ${msgRole === roleType.INFO && 'infoMsg'}`;
 
   return (
     <div className={classes}>

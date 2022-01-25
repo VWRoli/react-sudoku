@@ -22,9 +22,6 @@ const GridItem: React.FC<Props> = ({
       className={`${selected === id ? 'grid-item selected' : 'grid-item'}`}
       id={id}
       onClick={handleClick}
-      // style={{
-      //   backgroundColor: computerOutput ? 'rgba(186, 231, 204, 0.2)' : '',
-      // }}
     >
       {computerOutput ? <div className="cell-overlay"></div> : null}
 

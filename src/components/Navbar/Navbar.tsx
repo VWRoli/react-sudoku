@@ -1,5 +1,6 @@
-import { NavLink } from 'react-router-dom';
 import { navbarData } from './navbarData';
+//Components
+import NavbarItem from './NavbarItem';
 
 const Navbar: React.FC = (): JSX.Element => {
   return (
@@ -7,16 +8,7 @@ const Navbar: React.FC = (): JSX.Element => {
       <ul>
         {navbarData.map((link) => {
           const { id, url, text } = link;
-          return (
-            <li key={id}>
-              <NavLink
-                to={url}
-                className={({ isActive }) => (isActive ? 'active-link' : '')}
-              >
-                {text}
-              </NavLink>
-            </li>
-          );
+          return <NavbarItem key={id} url={url} text={text} />;
         })}
       </ul>
     </nav>

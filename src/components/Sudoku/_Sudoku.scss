@@ -1,6 +1,9 @@
 .btn-container {
   display: flex;
   justify-content: space-around;
+  & > * {
+    margin: 0 2rem;
+  }
 }
 .grid-wrapper {
   background-color: var(--secondaryBgColor);

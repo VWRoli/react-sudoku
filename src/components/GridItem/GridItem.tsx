@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 type Props = {
   number: number;
   id: string;
@@ -19,9 +17,7 @@ const GridItem: React.FC<Props> = ({
 
   return (
     <div
-      className={`${
-        selected === id && !number ? 'grid-item selected' : 'grid-item'
-      }`}
+      className={`${selected === id ? 'grid-item selected' : 'grid-item'}`}
       id={id}
       onClick={handleClick}
     >

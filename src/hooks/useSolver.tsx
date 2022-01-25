@@ -1,4 +1,7 @@
-const useSolver = (board: number[]) => {
+const useSolver = (
+  board: number[],
+  setIsSolvable: React.Dispatch<React.SetStateAction<boolean>>,
+) => {
   //Convert array to two dimensions for algorithm to handle
   const twoDimensionalBoard = [];
   for (let i = 0; i < board.length; i = i + 9) {
@@ -10,12 +13,12 @@ const useSolver = (board: number[]) => {
     const row = emptySpot[0];
     const col = emptySpot[1];
 
-    // there is no more empty spots
+    // Check if the board is solvable
     if (row === -1) {
-      //setIsSolvable(true);
+      setIsSolvable(true);
       return board;
     } else {
-      //setIsSolvable(false);
+      setIsSolvable(false);
     }
 
     for (let num = 1; num <= 9; num++) {

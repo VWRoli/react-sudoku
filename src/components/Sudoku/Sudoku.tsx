@@ -9,7 +9,7 @@ import GridItem from '../GridItem/GridItem';
 const Sudoku: React.FC = (): JSX.Element => {
   const [selected, setSelected] = useState('');
   const [isSolvable, setIsSolvable] = useState(true);
-  const [userInput, setUserInput] = useState();
+  const [computerOutput, setComputerOutput] = useState<boolean[] | null>(null);
 
   const emptyBoard: number[] = Array(81).fill(0);
 
@@ -27,7 +27,13 @@ const Sudoku: React.FC = (): JSX.Element => {
   const handleReset = () => {
     setBoard(emptyBoard);
     setIsSolvable(true);
+    setComputerOutput(null);
     localStorage.removeItem('sudoku-board');
+  };
+
+  const handleTest = () => {
+    setComputerOutput(null);
+    setBoard(testSudoku);
   };
 
   const handleSolve = (board: number[]) => {
@@ -36,7 +42,11 @@ const Sudoku: React.FC = (): JSX.Element => {
     for (let i = 0; i < board.length; i = i + 9) {
       twoDimensionalBoard.push(board.slice(i, i + 9));
     }
-    console.log(board);
+
+    //To color the computer generated cells
+    console.log(board.map((cell) => (cell !== 0 ? false : true)));
+    setComputerOutput(board.map((cell) => (cell !== 0 ? false : true)));
+
     function solve(board: number[][]) {
       const emptySpot = nextEmptySpot(board);
       const row = emptySpot[0];
@@ -144,15 +154,19 @@ const Sudoku: React.FC = (): JSX.Element => {
   return (
     <PageWrapper>
       <div className="grid-wrapper">
-        {board?.map((item: number, i: number) => (
-          <GridItem
-            key={i}
-            id={`${i}`}
-            number={item}
-            selected={selected}
-            setSelected={setSelected}
-          />
-        ))}
+        {board?.map((item: number, i: number) => {
+          //computerOutput[i] === true
+          return (
+            <GridItem
+              key={i}
+              id={`${i}`}
+              number={item}
+              selected={selected}
+              setSelected={setSelected}
+              computerOutput={computerOutput ? computerOutput[i] : false}
+            />
+          );
+        })}
       </div>
       {isSolvable || (
         <Message
@@ -180,7 +194,7 @@ const Sudoku: React.FC = (): JSX.Element => {
         <Button
           label="Test"
           btnRole={roleType.WARNING}
-          clickHandler={() => setBoard(testSudoku)}
+          clickHandler={handleTest}
         />
         <Button
           label="Reset"

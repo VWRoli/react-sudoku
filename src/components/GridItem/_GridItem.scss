@@ -20,3 +20,11 @@
   border-radius: $primary-radius;
   background-color: rgba($successColor, 0.35);
 }
+
+@media screen and (max-width: 800px) {
+  .grid-item {
+    height: 30px;
+    width: 30px;
+    font-size: 1rem;
+  }
+}

@@ -3,3 +3,18 @@
   min-height: 60vh;
   @include flex-center(column);
 }
+@media screen and (max-width: 1150px) {
+  .page-wrapper {
+    width: 70vw;
+  }
+}
+@media screen and (max-width: 800px) {
+  .page-wrapper {
+    width: 95vw;
+  }
+}
+// @media screen and (max-width: 800px) {
+//   .page-wrapper {
+//     width: 75vw;
+//   }
+// }

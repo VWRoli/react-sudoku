@@ -16,3 +16,8 @@
     flex: 1;
   }
 }
+@media screen and (max-width: 700px) {
+  .home {
+    flex-direction: column;
+  }
+}

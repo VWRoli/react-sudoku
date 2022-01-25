@@ -65,3 +65,15 @@
     margin: 1rem 0.25rem;
   }
 }
+@media screen and (max-width: 800px) {
+  .btn-container {
+    & > * {
+      margin: 0 1rem;
+    }
+  }
+}
+@media screen and (max-width: 600px) {
+  .grid-wrapper {
+    padding: 1rem;
+  }
+}

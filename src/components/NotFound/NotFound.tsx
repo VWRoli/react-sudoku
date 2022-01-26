@@ -2,7 +2,7 @@
 import Button, { roleType } from '../common/Button/Button';
 import PageWrapper from '../common/PageWrapper/PageWrapper';
 
-const NotFound = () => {
+const NotFound: React.FC = (): JSX.Element => {
   return (
     <PageWrapper>
       <h2>404</h2>

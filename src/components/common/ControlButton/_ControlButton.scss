@@ -1,6 +1,5 @@
 .control-btn {
-  height: 35px;
-  width: 35px;
+  @include square-size(35px);
   background-color: $infoColor;
   color: $white;
   border-radius: $primary-radius;
@@ -19,8 +18,7 @@
 }
 @media screen and (max-width: 800px) {
   .control-btn {
-    height: 28px;
-    width: 28px;
+    @include square-size(28px);
     font-size: 1rem;
   }
   .del-btn {

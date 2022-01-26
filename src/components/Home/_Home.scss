@@ -1,6 +1,5 @@
 .home {
-  display: flex;
-  align-items: center;
+  @include flex-center(row);
   margin: 2rem;
 
   .left {

@@ -21,3 +21,8 @@
     color: darken($clr, 25);
   }
 }
+
+@mixin square-size($size) {
+  height: $size;
+  width: $size;
+}

@@ -1,4 +1,4 @@
-import { navbarData } from './navbarData';
+import { navbarData } from '../../assets/navbarData';
 //Components
 import NavbarItem from './NavbarItem';
 

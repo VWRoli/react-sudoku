@@ -4,12 +4,16 @@ import PageWrapper from '../common/PageWrapper/PageWrapper';
 import Button, { roleType } from '../common/Button/Button';
 import Message from '../common/Message/Message';
 import FormGroup from './FormGroup';
+import useSubscribe from '../../hooks/useSubscribe';
 
-type DataType = {
+export type DataType = {
   fullName: string;
   email: string;
   difficulty: string;
 };
+
+//WE can send data and get a response but nothing happens
+const FAKE_URL = 'http://jsonplaceholder.typicode.com/posts';
 
 const Subscription: React.FC = (): JSX.Element => {
   const [formData, setFormData] = useState<DataType>({
@@ -17,32 +21,11 @@ const Subscription: React.FC = (): JSX.Element => {
     email: '',
     difficulty: 'easy',
   });
-  const [isLoading, setIsLoading] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState<null | boolean>(null);
 
-  const subscribe = async (formData: DataType) => {
-    try {
-      setIsLoading(true);
-      setIsSubmitted(null);
-      const res = await fetch('http://jsonplaceholder.typicode.com/posts', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (!res.ok) throw new Error('Something went wrong...');
-
-      setIsSubmitted(true);
-      setIsLoading(false);
-      return res;
-    } catch (err) {
-      setIsLoading(false);
-      setIsSubmitted(false);
-    }
-  };
+  const { isLoading, isSubmitted, subscribe } = useSubscribe(
+    FAKE_URL,
+    formData,
+  );
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
@@ -52,7 +35,7 @@ const Subscription: React.FC = (): JSX.Element => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    subscribe(formData);
+    subscribe();
   };
 
   return (
@@ -88,7 +71,7 @@ const Subscription: React.FC = (): JSX.Element => {
           </select>
         </div>
         {isLoading && <Message msgRole={roleType.INFO} msg="Loading..." />}
-        {isSubmitted === null ? null : (
+        {isSubmitted !== null && (
           <Message
             msgRole={isSubmitted ? roleType.SUCCESS : roleType.ERROR}
             msg={

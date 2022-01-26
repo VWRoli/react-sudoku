@@ -13,7 +13,7 @@ const Home: React.FC = (): JSX.Element => {
           </p>
           <p>
             If you are stuck with a puzzle just type in your numbers, the
-            application can solve it it seconds. Or if the puzzle is not
+            application can solve it in seconds. Or if the puzzle is not
             solvable you get an error message.
           </p>
           <h3>It can solve any Sudoku Puzzle!</h3>

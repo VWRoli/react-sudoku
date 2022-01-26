@@ -1,46 +1,51 @@
-# Getting Started with Create React App
+# Sudoku Solver App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Intro
 
-## Available Scripts
+Sudoku solver application, which is optimized for both mobile and desktop devices. If you are stuck with a puzzle just put in your numbers, the application can solve it in seconds. Or if the puzzle is not solvable you get an error message.
 
-In the project directory, you can run:
+## Description
 
-### `npm start`
+The app was created with React and Typescript. I used a backtracking algorithm to solve the puzzles. I based my solving algorithm on the following two articles:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- https://medium.com/swlh/backtracking-algorithm-to-solve-sudoku-puzzle-in-javascript-732aedcf5e2
+- https://lisperator.net/blog/javascript-sudoku-solver/?utm_source=pocket_mylist
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## To start the app locally
 
-### `npm test`
+To start the application, clone this repo to your computer.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+`git clone https://github.com/VWRoli/react-sudoku.git`
 
-### `npm run build`
+Install all the dependencies.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+`npm i`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+After you installed the dependencies you are ready to go with
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+`npm start`
 
-### `npm run eject`
+## Technologies & Tools
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Front-end:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- React
+- TypeScript
+- React Router
+- Sass
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Timetable
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- 15 min Task assessment
+- 30 min Project set up
+- 1-hour Build site structure
+- 1,5 hours Styling
+- 1,5 hours Subscription form and fake API
+- 1-hour Create the board
+- 4,5 hours Control buttons and user input
+- 6,5 hours Solution algorithm
+- 50 min localStorage, coloring squares after solving the puzzle
+- 20 min Mobile responsivity
+- 1,5 hours Minor improvements
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Overall: ~20h

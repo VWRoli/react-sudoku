@@ -76,3 +76,15 @@
     padding: 1rem;
   }
 }
+@media screen and (max-width: 375px) {
+  .grid-wrapper {
+    border-radius: $primary-radius;
+    padding: 0.6rem;
+  }
+  .control-btn-container {
+    @include flex-center(row);
+    & > * {
+      margin: 1rem 0.1rem;
+    }
+  }
+}

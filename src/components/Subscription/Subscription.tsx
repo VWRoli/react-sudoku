@@ -39,8 +39,8 @@ const Subscription: React.FC = (): JSX.Element => {
       setIsLoading(false);
       return res;
     } catch (err) {
+      setIsLoading(false);
       setIsSubmitted(false);
-      console.warn(err);
     }
   };
 

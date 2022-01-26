@@ -1,7 +1,9 @@
 .page-wrapper {
   width: 55vw;
   min-height: 60vh;
+  max-height: 100vh;
   @include flex-center(column);
+  margin: auto;
 }
 @media screen and (max-width: 1150px) {
   .page-wrapper {

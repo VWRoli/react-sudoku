@@ -2,6 +2,9 @@ const useSolver = (
   board: number[],
   setIsSolvable: React.Dispatch<React.SetStateAction<boolean>>,
 ) => {
+  //create copy of the array so we don't modify the original
+  const newBoard = [...board];
+
   // Get position coordinates based on index
   const getPosition = (index: number) => [Math.floor(index / 9), index % 9];
 
@@ -79,7 +82,7 @@ const useSolver = (
 
     return board;
   };
-  return solve(board);
+  return solve(newBoard);
 };
 
 export default useSolver;

@@ -11,6 +11,7 @@ import GridItem from '../GridItem/GridItem';
 const Sudoku: React.FC = (): JSX.Element => {
   const [selected, setSelected] = useState('');
   const [isSolvable, setIsSolvable] = useState(true);
+  const [isValid, setIsValid] = useState(true);
   const [computerOutput, setComputerOutput] = useState<boolean[] | null>(null);
 
   const localBoard = JSON.parse(localStorage.getItem('sudoku-board') || '{}');
@@ -22,8 +23,9 @@ const Sudoku: React.FC = (): JSX.Element => {
     setSelected('');
     //Clear board
     setBoard(emptyBoard);
-    //Error message if the board is not solvable
+    //Remove error messages
     setIsSolvable(true);
+    setIsValid(true);
     //Remove solved cell colors
     setComputerOutput(null);
     //Remove board locally
@@ -31,13 +33,25 @@ const Sudoku: React.FC = (): JSX.Element => {
   };
 
   const handleTest = () => {
+    setIsValid(true);
     setComputerOutput(null);
     setBoard(testSudoku);
   };
 
+  //Check if Sudoku is valid (valid means it has at least 17 numbers)
+  const checkValidSudoku = (board: number[]) =>
+    board.filter((el) => el !== 0).length >= 17 ? true : false;
+
   const handleSolve = (board: number[]) => {
+    //check for valid sudoku, give error message
+    if (!checkValidSudoku(board)) {
+      setIsValid(false);
+      return;
+    }
+
     //Clear selections
     setSelected('');
+
     //To color the computer generated cells after puzzle is solved
     setComputerOutput(board.map((cell) => (cell !== 0 ? false : true)));
     //Set the board to the solved puzzle
@@ -80,6 +94,12 @@ const Sudoku: React.FC = (): JSX.Element => {
       {isSolvable || (
         <Message
           msg="This Sudoku Puzzle is not solvable!"
+          msgRole={roleType.ERROR}
+        />
+      )}
+      {isValid || (
+        <Message
+          msg="A Sudoku Puzzle neeeds at least 17 numbers!"
           msgRole={roleType.ERROR}
         />
       )}

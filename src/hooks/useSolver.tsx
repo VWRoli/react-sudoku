@@ -2,100 +2,89 @@ const useSolver = (
   board: number[],
   setIsSolvable: React.Dispatch<React.SetStateAction<boolean>>,
 ) => {
-  //Convert array to two dimensions for algorithm to handle
-  const twoDimensionalBoard = [];
-  for (let i = 0; i < board.length; i = i + 9) {
-    twoDimensionalBoard.push(board.slice(i, i + 9));
+  // Get position coordinates based on index
+  function getPosition(index: number) {
+    return [Math.floor(index / 9), index % 9];
   }
 
-  function solve(board: number[][]) {
-    const emptySpot = nextEmptySpot(board);
-    const row = emptySpot[0];
-    const col = emptySpot[1];
+  // Get index based on position coordinates
+  function getIndex(position: number[]) {
+    return position[0] * 9 + position[1];
+  }
+
+  //Find next empty cell
+  const nextEmptyCell = (board: number[]) => board.findIndex((el) => el === 0);
+
+  //Take a board and an index number and return a row in an array
+  function getRow(board: number[], index: number) {
+    //index of first in row
+    const firstInRow = Math.floor(index / 9) * 9 - 1;
+    //get last in row
+    const lastInRow = firstInRow + 9 + 1;
+    //return an array of that row
+    return board.filter((_, i) => i > firstInRow && i < lastInRow);
+  }
+
+  //Take a board and an index number and return a column in an array
+  function getColumn(board: number[], index: number) {
+    //index of first in Column
+    const firstInColumn = Math.floor(index % 9);
+    //return an array of that Column
+    return board.filter((_, i) => i % 9 === firstInColumn);
+  }
+
+  //Take a board and an index number and return a square in an array
+  function getSquare(board: number[], index: number) {
+    const boxRow = Math.floor(getPosition(index)[0] / 3) * 3;
+    const boxCol = Math.floor(getPosition(index)[1] / 3) * 3;
+    const square: number[] = [];
+
+    for (let r = boxRow; r < boxRow + 3; ++r) {
+      for (let c = boxCol; c < boxCol + 3; ++c) {
+        square.push(board[getIndex([r, c])]);
+      }
+    }
+    return square;
+  }
+
+  //Check if the row or col or square array is invalid
+  const checkIfInvalid = (arr: number[], value: number) =>
+    arr.some((el) => el === value);
+
+  function checkIfValueInvalid(board: number[], index: number, value: number) {
+    if (
+      checkIfInvalid(getRow(board, index), value) ||
+      checkIfInvalid(getColumn(board, index), value) ||
+      checkIfInvalid(getSquare(board, index), value)
+    ) {
+      //Meaning value is invalid, not usable
+      return true;
+    }
+    //Meaning valid, usable
+    return false;
+  }
+
+  function solve(board: number[]) {
+    const emptySpot = nextEmptyCell(board);
 
     // Check if the board is solvable
-    if (row === -1) {
+    if (emptySpot === -1) {
       setIsSolvable(true);
       return board;
     } else {
       setIsSolvable(false);
     }
-
     for (let num = 1; num <= 9; num++) {
-      if (checkValue(board, row, col, num)) {
-        board[row][col] = num;
+      if (!checkIfValueInvalid(board, emptySpot, num)) {
+        board[emptySpot] = num;
         solve(board);
       }
     }
+    if (nextEmptyCell(board) !== -1) board[emptySpot] = 0;
 
-    if (nextEmptySpot(board)[0] !== -1) board[row][col] = 0;
     return board;
   }
-
-  function checkValue(
-    board: number[][],
-    row: number,
-    column: number,
-    value: number,
-  ) {
-    if (
-      checkRow(board, row, value) &&
-      checkColumn(board, column, value) &&
-      checkSquare(board, row, column, value)
-    ) {
-      return true;
-    }
-
-    return false;
-  }
-
-  function checkSquare(
-    board: number[][],
-    row: number,
-    column: number,
-    value: number,
-  ) {
-    const boxRow = Math.floor(row / 3) * 3;
-    const boxCol = Math.floor(column / 3) * 3;
-
-    for (let r = 0; r < 3; r++) {
-      for (let c = 0; c < 3; c++) {
-        if (board[boxRow + r][boxCol + c] === value) return false;
-      }
-    }
-
-    return true;
-  }
-
-  function checkColumn(board: number[][], column: number, value: number) {
-    for (let i = 0; i < board.length; i++) {
-      if (board[i][column] === value) {
-        return false;
-      }
-    }
-
-    return true;
-  }
-
-  function checkRow(board: number[][], row: number, value: number) {
-    for (let i = 0; i < board[row].length; i++) {
-      if (board[row][i] === value) {
-        return false;
-      }
-    }
-
-    return true;
-  }
-
-  function nextEmptySpot(board: number[][]) {
-    for (let i = 0; i < 9; i++) {
-      for (let j = 0; j < 9; j++) {
-        if (board[i][j] === 0) return [i, j];
-      }
-    }
-    return [-1, -1];
-  }
-  return solve(twoDimensionalBoard).flat();
+  return solve(board);
 };
 
 export default useSolver;

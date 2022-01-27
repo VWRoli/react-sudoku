@@ -6,10 +6,6 @@
   font-weight: 300;
   width: fit-content;
 }
-.disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
 .error {
   @include btn-clr($errorColor);
 }

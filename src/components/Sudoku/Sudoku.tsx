@@ -12,6 +12,7 @@ const Sudoku: React.FC = (): JSX.Element => {
   const [selected, setSelected] = useState('');
   const [isSolvable, setIsSolvable] = useState(true);
   const [isValid, setIsValid] = useState(true);
+  const [isSolved, setIsSolved] = useState(false);
   const [computerOutput, setComputerOutput] = useState<boolean[] | null>(null);
 
   const localBoard = JSON.parse(localStorage.getItem('sudoku-board') || '{}');
@@ -26,6 +27,7 @@ const Sudoku: React.FC = (): JSX.Element => {
     //Remove error messages
     setIsSolvable(true);
     setIsValid(true);
+    setIsSolved(false);
     //Remove solved cell colors
     setComputerOutput(null);
     //Remove board locally
@@ -33,6 +35,7 @@ const Sudoku: React.FC = (): JSX.Element => {
   };
 
   const handleTest = () => {
+    setIsSolved(false);
     setIsValid(true);
     setComputerOutput(null);
     setBoard(testSudoku);
@@ -56,6 +59,7 @@ const Sudoku: React.FC = (): JSX.Element => {
     setComputerOutput(board.map((cell) => (cell !== 0 ? false : true)));
     //Set the board to the solved puzzle
     setBoard(useSolver(board, setIsSolvable));
+    setIsSolved(true);
   };
 
   const addUserInput = (selectedIndex: number, value: number) => {
@@ -84,6 +88,7 @@ const Sudoku: React.FC = (): JSX.Element => {
               number={item}
               selected={selected}
               setSelected={setSelected}
+              disabled={isSolved}
               computerOutput={
                 computerOutput && isSolvable ? computerOutput[i] : false
               }
@@ -111,6 +116,7 @@ const Sudoku: React.FC = (): JSX.Element => {
             key={number}
             selected={selected}
             addUserInput={addUserInput}
+            disabled={isSolved}
           />
         ))}
       </div>
@@ -119,6 +125,7 @@ const Sudoku: React.FC = (): JSX.Element => {
           label="Solve"
           btnRole={roleType.SUCCESS}
           clickHandler={() => handleSolve(board)}
+          disabled={isSolved}
         />
         <Button
           label="Test"
